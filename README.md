@@ -28,7 +28,41 @@ To formulate a C program to convert a decimal number into its binary equivalent 
 ### Step 8: 
    Stop
 # Program:
+---
+#include <stdio.h>
+
+int main()
+{
+    int num, binary[32], i = 0;
+
+    printf("Enter a decimal number: ");
+    scanf("%d", &num);
+
+    if (num == 0)
+    {
+        printf("Binary equivalent: 0");
+        return 0;
+    }
+
+    while (num > 0)
+    {
+        binary[i] = num % 2;
+        num = num / 2;
+        i++;
+    }
+
+    printf("Binary equivalent: ");
+    for (int k = i - 1; k >= 0; k--)
+    {
+        printf("%d", binary[k]);
+    }
+
+    return 0;
+}
+
+
 # Output:
+![alt text](c11.png)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -67,7 +101,9 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9: 
   Stop
 # Program:
+
 # Output:
+![alt text](c12.png)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -101,7 +137,40 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 10: 
   Stop
 # Program:
+
+#include <stdio.h>
+
+int main()
+{
+    char s[100], d[100];
+    int i, j = 0, len = 0;
+
+    printf("Enter a string: ");
+    scanf("%[^\n]s", s);
+
+    // Find length of the string
+    while (s[len] != '\0')
+    {
+        len++;
+    }
+
+    // Reverse the string
+    for (i = len - 1; i >= 0; i--)
+    {
+        d[j] = s[i];
+        j++;
+    }
+
+    d[j] = '\0';
+
+    printf("Reversed string: %s", d);
+
+    return 0;
+}
+
+
 # Output:
+![alt text](c13.png)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -135,7 +204,44 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8:
   Stop
 # Program:
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char s[100];
+    int visited[256] = {0};
+    int i, j, n, count;
+
+    printf("Enter a string: ");
+    scanf("%[^\n]", s);
+
+    n = strlen(s);
+
+    printf("\nCharacter Frequency:\n");
+    for (i = 0; i < n; i++)
+    {
+        if (visited[(unsigned char)s[i]] == 0)
+        {
+            count = 0;
+            for (j = 0; j < n; j++)
+            {
+                if (s[i] == s[j])
+                {
+                    count++;
+                }
+            }
+            printf("'%c' = %d\n", s[i], count);
+            visited[(unsigned char)s[i]] = 1;
+        }
+    }
+
+    return 0;
+}
+
 # Output:
+
+![alt text](c14.png)
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -169,7 +275,66 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 8: 
   Stop
 # Program:
+---
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[200];
+    char words[50][50];
+    int i = 0, j = 0, k = 0;
+    int count = 0;
+
+    printf("Enter a string: ");
+    scanf("%[^\n]s", str);
+
+    /* Split string into words */
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (str[i] == ' ')
+        {
+            words[count][j] = '\0';
+            count++;
+            j = 0;
+        }
+        else
+        {
+            words[count][j] = str[i];
+            j++;
+        }
+    }
+    words[count][j] = '\0';
+    count++;
+
+    /* Remove duplicate words */
+    for (i = 0; i < count; i++)
+    {
+        for (j = i + 1; j < count; j++)
+        {
+            if (strcmp(words[i], words[j]) == 0)
+            {
+                words[j][0] = '\0';
+            }
+        }
+    }
+
+    /* Print unique words */
+    printf("\nString after removing duplicate words:\n");
+    for (i = 0; i < count; i++)
+    {
+        if (words[i][0] != '\0')
+        {
+            printf("%s ", words[i]);
+        }
+    }
+
+    return 0;
+}
+
 # Output:
+![alt text](c15.png)
+
 # Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
