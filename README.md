@@ -101,6 +101,79 @@ Thus, the program was implemented and executed successfully, and the required ou
 ### Step 9: 
   Stop
 # Program:
+---
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10], m;
+    int i, j, k;
+    int min, max;
+    int row, col;
+    int flag = 0;
+
+    printf("Enter the order of the square matrix: ");
+    scanf("%d", &m);
+
+    printf("Enter the matrix elements:\n");
+    for (i = 0; i < m; i++)
+    {
+        for (j = 0; j < m; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    printf("The matrix is:\n");
+    for (i = 0; i < m; i++)
+    {
+        for (j = 0; j < m; j++)
+        {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (i = 0; i < m; i++)
+    {
+        min = a[i][0];
+        col = 0;
+
+        for (j = 1; j < m; j++)
+        {
+            if (a[i][j] < min)
+            {
+                min = a[i][j];
+                col = j;
+            }
+        }
+
+        max = a[0][col];
+        row = 0;
+
+        for (k = 1; k < m; k++)
+        {
+            if (a[k][col] > max)
+            {
+                max = a[k][col];
+                row = k;
+            }
+        }
+
+        if (min == max)
+        {
+            printf("\nSaddle Point found");
+            printf("\nValue: %d", min);
+            printf("\nPosition: Row %d, Column %d\n", row + 1, col + 1);
+            flag = 1;
+        }
+    }
+
+    if (flag == 0)
+        printf("\nNo Saddle Point found in the matrix.");
+
+    return 0;
+}
 
 # Output:
 ![alt text](c12.png)
